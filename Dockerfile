@@ -3,4 +3,3 @@ RUN apk update && apk add --no-cache shadow c-client libpng gettext freetype exp
 COPY --chown=www-data:www-data ./cacert.pem /etc/pki/tls/certs/ca-bundle.crt
 COPY --chown=www-data:www-data ./php.ini /usr/local/etc/php/php.ini
 COPY --chown=www-data:www-data ./php-fpm.conf /usr/local/etc/php-fpm.conf
-USER www-data
