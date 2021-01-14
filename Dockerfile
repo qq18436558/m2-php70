@@ -32,7 +32,7 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget tzdata 
     sed -i -e "s/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 86400/g" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/;curl.cainfo =/curl.cainfo = \/etc\/pki\/tls\/certs\/ca-bundle.crt/g" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/;openssl.cafile=/openssl.cafile=\/etc\/pki\/tls\/certs\/ca-bundle.crt/g" /etc/php/7.0/fpm/php.ini && \
-    mkdir /run/php /logs /etc/pki/tls/certs/ && apt-get remove --purge -y software-properties-common && \
+    mkdir -p /run/php /logs /etc/pki/tls/certs/ && apt-get remove --purge -y software-properties-common && \
     apt-get autoremove -y && apt-get clean && apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
