@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 ENV LANG C.UTF-8
 
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget tzdata && \
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget tzdata cron && \
     wget https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.2/s6-overlay-amd64.tar.gz -O /tmp/s6-overlay-amd64.tar.gz && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / --exclude="./bin" && tar xzf /tmp/s6-overlay-amd64.tar.gz -C /usr ./bin && \
     apt -y install software-properties-common && add-apt-repository -y ppa:ondrej/php && apt update && \
@@ -40,7 +40,3 @@ EXPOSE 9000
 
 COPY cacert.pem /etc/pki/tls/certs/ca-bundle.crt
 COPY php-fpm.conf /etc/php/7.0/fpm/php-fpm.conf
-
-COPY resources/etc/ /etc/
-
-ENTRYPOINT ["/init"]
