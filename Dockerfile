@@ -21,7 +21,9 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget tzdata 
     sed -i -e "s/;openssl.cafile=/openssl.cafile=\/etc\/pki\/tls\/certs\/ca-bundle.crt/g" /etc/php/7.0/cli/php.ini && \
     sed -i -e "s/short_open_tag = Off/short_open_tag = On/g" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/max_execution_time = 30/max_execution_time = 300/g" /etc/php/7.0/fpm/php.ini && \
-    sed -i -e "s/memory_limit = 128M/memory_limit = 2000M/g" /etc/php/7.0/fpm/php.ini && \
+    sed -i -e "s/memory_limit = 128M/memory_limit = 2G/g" /etc/php/7.0/fpm/php.ini && \
+    sed -i -e "s/max_input_time = 60/max_input_time = 3600/g" /etc/php/7.0/fpm/php.ini && \
+    sed -i -e "s/; max_input_vars = 1000/max_input_vars = 200000/g" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/error_reporting = E_ALL \& \~E_DEPRECATED \& \~E_STRICT/error_reporting = E_ALL \& \~E_NOTICE/g" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/post_max_size = 8M/post_max_size = 50M/g" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/g" /etc/php/7.0/fpm/php.ini && \
